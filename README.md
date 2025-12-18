@@ -8,13 +8,10 @@ A modern, cybersecurity-themed portfolio website built with HubSpot CMS, featuri
 
 ## 🌟 Live Demo
 
-[View Live Portfolio](https://your-portfolio-url.com) *(Replace with your actual URL)*
+[View Live Portfolio]([https://your-portfolio-url.com](https://147173676.hs-sites-eu1.com/mahmoud_portfolio)) *(Replace with your actual URL)*
 
 ## 📸 Screenshots
 
-![Portfolio Hero Section](./screenshots/hero.png)
-![Skills Section](./screenshots/skills.png)
-![Projects Section](./screenshots/projects.png)
 
 ## ✨ Features
 
