@@ -1,0 +1,263 @@
+<!--
+  templateType: page
+  isAvailableForNewContent: true
+-->
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>{% if content.html_title %}{{ content.html_title }}{% else %}Mahmoud Saad - Cybersecurity Portfolio{% endif %}</title>
+    
+    <meta name="description" content="{% if content.meta_description %}{{ content.meta_description }}{% else %}Cybersecurity professional specializing in SIEM management, threat hunting, and incident response.{% endif %}">
+
+    {% if brand_settings.primaryFavicon.src %}
+      <link rel="shortcut icon" href="{{ brand_settings.primaryFavicon.src }}" />
+    {% endif %}
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Tailwind Config -->
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              'cyber-bg': '#0a0f18',
+              'cyber-surface': '#121a2a',
+              'cyber-primary': '#22d3ee',
+              'cyber-secondary': '#16a34a',
+              'cyber-accent': '#a855f7',
+              'cyber-text': '#c8d8e8',
+              'cyber-muted': '#5a687c'
+            }
+          }
+        }
+      };
+    </script>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Custom CSS & JS -->
+    {{ require_css(get_asset_url("./portfolio-style.css")) }}
+    {{ require_js(get_asset_url("./portfolio-script.js")) }}
+
+    {{ standard_header_includes }}
+  </head>
+
+<!-- Loading Screen -->
+<div id="loading-screen" class="fixed inset-0 bg-[#0a0f18] z-[9999] flex items-center justify-center">
+    <div class="text-center">
+        <div class="w-16 h-16 border-4 border-[#22d3ee] border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
+        <p class="text-[#22d3ee] font-mono">Loading Portfolio...</p>
+    </div>
+</div>
+
+<script>
+    window.addEventListener('load', () => {
+        const loadingScreen = document.getElementById('loading-screen');
+        loadingScreen.style.opacity = '0';
+        loadingScreen.style.transition = 'opacity 0.5s ease';
+        setTimeout(() => {
+            loadingScreen.style.display = 'none';
+        }, 500);
+    });
+</script>
+```
+
+
+  
+  <body class="bg-cyber-bg text-cyber-text font-sans antialiased">
+
+    <!-- Navigation Header -->
+    <header class="sticky top-0 z-50 w-full bg-cyber-bg/80 backdrop-blur-lg border-b border-gray-800">
+      <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between items-center h-16">
+          
+          <a href="#home" class="font-mono text-2xl font-bold text-cyber-primary hover:text-cyber-primary/80 transition-colors">
+            M.Saad<span class="text-white">_</span>
+          </a>
+
+          <!-- Desktop Nav -->
+          <div class="hidden md:flex md:items-center md:space-x-1">
+            <a href="#home" class="nav-link px-4 py-2 rounded-lg text-sm font-medium font-mono text-gray-400 hover:text-cyber-primary hover:bg-cyber-surface transition-all">
+              <span class="text-cyber-primary">/</span>home
+            </a>
+            <a href="#about" class="nav-link px-4 py-2 rounded-lg text-sm font-medium font-mono text-gray-400 hover:text-cyber-primary hover:bg-cyber-surface transition-all">
+              <span class="text-cyber-primary">/</span>about
+            </a>
+            <a href="#skills" class="nav-link px-4 py-2 rounded-lg text-sm font-medium font-mono text-gray-400 hover:text-cyber-primary hover:bg-cyber-surface transition-all">
+              <span class="text-cyber-primary">/</span>skills
+            </a>
+            <a href="#projects" class="nav-link px-4 py-2 rounded-lg text-sm font-medium font-mono text-gray-400 hover:text-cyber-primary hover:bg-cyber-surface transition-all">
+              <span class="text-cyber-primary">/</span>projects
+            </a>
+            <a href="#contact" class="nav-link px-4 py-2 rounded-lg text-sm font-medium font-mono text-gray-400 hover:text-cyber-primary hover:bg-cyber-surface transition-all">
+              <span class="text-cyber-primary">/</span>contact
+            </a>
+          </div>
+
+          <div class="hidden md:block">
+            <a href="#contact" class="inline-flex items-center px-5 py-2 bg-cyber-primary text-cyber-bg font-mono font-semibold rounded-lg hover:bg-cyber-primary/90 transition-all">
+              Contact
+            </a>
+          </div>
+
+          <!-- Mobile Menu Button -->
+          <div class="md:hidden">
+            <button id="mobile-menu-button" class="p-2 rounded-lg text-gray-400 hover:text-white hover:bg-cyber-surface">
+              <svg id="menu-icon-open" class="block h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+              </svg>
+              <svg id="menu-icon-close" class="hidden h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+              </svg>
+            </button>
+          </div>
+        </div>
+      </nav>
+
+      <!-- Mobile Menu -->
+      <div id="mobile-menu" class="hidden md:hidden border-t border-gray-800">
+        <div class="px-2 pt-2 pb-3 space-y-1">
+          <a href="#home" class="nav-link block px-4 py-3 rounded-lg font-mono text-gray-400 hover:text-cyber-primary hover:bg-cyber-surface">/home</a>
+          <a href="#about" class="nav-link block px-4 py-3 rounded-lg font-mono text-gray-400 hover:text-cyber-primary hover:bg-cyber-surface">/about</a>
+          <a href="#skills" class="nav-link block px-4 py-3 rounded-lg font-mono text-gray-400 hover:text-cyber-primary hover:bg-cyber-surface">/skills</a>
+          <a href="#projects" class="nav-link block px-4 py-3 rounded-lg font-mono text-gray-400 hover:text-cyber-primary hover:bg-cyber-surface">/projects</a>
+          <a href="#contact" class="nav-link block px-4 py-3 rounded-lg font-mono text-gray-400 hover:text-cyber-primary hover:bg-cyber-surface">/contact</a>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Content - Drag and Drop Area -->
+    <main>
+      {% dnd_area "dnd_area" %}
+        {% dnd_section %}
+          {% dnd_column %}
+            {% dnd_row %}
+              {% dnd_module path="@hubspot/rich_text" %}
+                {% module_attribute "html" %}
+                  <div style="text-align: center; padding: 100px 20px; background: #0a0f18;">
+                    <h2 style="color: #22d3ee; font-size: 2.5rem; font-family: 'JetBrains Mono', monospace; margin-bottom: 20px;">
+                      🚀 Drag Your Modules Here
+                    </h2>
+                    <p style="color: #c8d8e8; font-size: 1.2rem; margin-bottom: 30px;">
+                      Click the <strong style="color: #22d3ee;">+ Add</strong> button on the right sidebar
+                    </p>
+                    <div style="background: #121a2a; border: 2px dashed #22d3ee; border-radius: 10px; padding: 30px; max-width: 600px; margin: 0 auto;">
+                      <p style="color: #22d3ee; font-family: monospace; margin-bottom: 10px;">
+                        > Search for these modules:
+                      </p>
+                      <ul style="list-style: none; padding: 0; color: #c8d8e8; font-family: monospace;">
+                        <li style="margin: 8px 0;">✓ Hero_Section</li>
+                        <li style="margin: 8px 0;">✓ Skills_Section</li>
+                        <li style="margin: 8px 0;">✓ Projects_Section</li>
+                      </ul>
+                    </div>
+                  </div>
+                {% end_module_attribute %}
+              {% end_dnd_module %}
+            {% end_dnd_row %}
+          {% end_dnd_column %}
+        {% end_dnd_section %}
+      {% end_dnd_area %}
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-cyber-surface/50 border-t border-gray-800 mt-20">
+      <div class="max-w-7xl mx-auto py-8 px-4 sm:px-6 lg:px-8">
+        <div class="grid md:grid-cols-3 gap-8 mb-8">
+          
+          <div>
+            <h3 class="font-mono text-xl font-bold text-cyber-primary mb-4">Mahmoud Saad</h3>
+            <p class="text-gray-400 text-sm leading-relaxed">
+              Cybersecurity professional dedicated to protecting digital infrastructures.
+            </p>
+          </div>
+
+          <div>
+            <h3 class="font-mono text-lg font-bold text-white mb-4">Quick Links</h3>
+            <ul class="space-y-2">
+              <li><a href="#home" class="text-gray-400 hover:text-cyber-primary transition-colors text-sm">> Home</a></li>
+              <li><a href="#about" class="text-gray-400 hover:text-cyber-primary transition-colors text-sm">> About</a></li>
+              <li><a href="#skills" class="text-gray-400 hover:text-cyber-primary transition-colors text-sm">> Skills</a></li>
+              <li><a href="#projects" class="text-gray-400 hover:text-cyber-primary transition-colors text-sm">> Projects</a></li>
+            </ul>
+          </div>
+
+          <div>
+            <h3 class="font-mono text-lg font-bold text-white mb-4">Connect</h3>
+            <div class="flex gap-4">
+              <a href="https://github.com/mahmouds107" target="_blank" class="w-10 h-10 bg-cyber-surface border border-gray-700 rounded-lg flex items-center justify-center text-gray-400 hover:text-cyber-primary hover:border-cyber-primary transition-all">
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                </svg>
+              </a>
+              <a href="mailto:mahmoudtrezgy1812@gmail.com" class="w-10 h-10 bg-cyber-surface border border-gray-700 rounded-lg flex items-center justify-center text-gray-400 hover:text-cyber-primary hover:border-cyber-primary transition-all">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                </svg>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="border-t border-gray-800 pt-8 text-center">
+          <p class="text-gray-500 font-mono text-sm">
+            © 2025 Mahmoud Saad // Built with <span class="text-cyber-primary">HubSpot CMS</span>
+          </p>
+        </div>
+      </div>
+    </footer>
+
+    {{ standard_footer_includes }}
+  </body>
+</html>
+```
+
+
+<!-- Enhanced SEO -->
+<meta name="author" content="Mahmoud Saad">
+<meta name="keywords" content="Cybersecurity, SIEM, Threat Hunting, Incident Response, Penetration Testing, Network Security, Mahmoud Saad">
+<meta name="robots" content="index, follow">
+<meta name="language" content="English">
+<meta name="revisit-after" content="7 days">
+
+<!-- Open Graph Meta Tags -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Mahmoud Saad Portfolio">
+<meta property="og:locale" content="en_US">
+{% if module.profile_photo %}
+<meta property="og:image" content="{{ module.profile_photo.src }}">
+{% endif %}
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:creator" content="@MahmoudSaad">
+
+<!-- Structured Data for SEO -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Mahmoud Saad",
+  "jobTitle": "Cybersecurity Professional",
+  "url": "{{ content.absolute_url }}",
+  "sameAs": [
+    "https://github.com/mahmouds107",
+    "https://linkedin.com/in/mahmoudsaad"
+  ],
+  "knowsAbout": [
+    "Cybersecurity",
+    "SIEM Management",
+    "Threat Hunting",
+    "Incident Response",
+    "Penetration Testing"
+  ]
+}
+</script>
